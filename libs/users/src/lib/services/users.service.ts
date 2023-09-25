@@ -7,14 +7,10 @@ import { UsersEntity } from '../+state/users.models';
   providedIn: 'root',
 })
 export class UsersService {
-  url = 'http://loclahost:8000';
+  url = 'http://localhost:8000';
   constructor(private readonly http: HttpClient) {}
 
   public getAll(): Observable<UsersEntity[]> {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    };
-    return this.http.get<UsersEntity[]>(`${this.url}/users`, { headers });
+    return this.http.get<UsersEntity[]>(`${this.url}/users`);
   }
 }

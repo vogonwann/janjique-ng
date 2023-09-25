@@ -16,7 +16,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/presence/tsconfig.app.json",
         "assets": ["apps/presence/src/favicon.ico", "apps/presence/src/assets"],
-        "styles": ["apps/presence/src/styles.scss"],
+        "styles": ["apps/presence/src/styles.scss",  "node_modules/@clr/ui/clr-ui.min.css"],
         "scripts": []
       },
       "configurations": {
