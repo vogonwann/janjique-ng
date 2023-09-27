@@ -1,0 +1,21 @@
+<clr-datagrid>
+    <clr-dg-column>User ID</clr-dg-column>
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-column>Creation date</clr-dg-column>
+    <clr-dg-column *ngFor="let day of workingDays">{{ day | date }}</clr-dg-column>
+
+    <clr-dg-row *ngFor="let user of users">
+        <clr-dg-cell>{{user.id}}</clr-dg-cell>
+        <clr-dg-cell>{{user.name}} {{user.last_name}}</clr-dg-cell>
+        <clr-dg-cell>{{user.created_at | date}}</clr-dg-cell>
+        <clr-dg-cell *ngFor="let day of workingDays">
+            <div style="display: flex;">
+                <cds-icon shape="check-circle"></cds-icon>
+                <cds-icon shape="times-circle"></cds-icon>
+                <cds-icon shape="phone-handset"></cds-icon>
+            </div>
+        </clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{users.length}} users</clr-dg-footer>
+</clr-datagrid>

@@ -37,3 +37,8 @@ export const selectEntity = createSelector(
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const workingDays = createSelector(
+  selectUsersState,
+  (state: UsersState) => state.workingDays
+);

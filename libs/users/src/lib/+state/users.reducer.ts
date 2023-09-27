@@ -10,6 +10,7 @@ export interface UsersState extends EntityState<UsersEntity> {
   selectedId?: string | number; // which Users record has been selected
   loaded: boolean; // has the Users list been loaded
   error?: string | null; // last known error (if any)
+  workingDays?: Date[] | null;
 }
 
 export interface UsersPartialState {
@@ -34,7 +35,16 @@ const reducer = createReducer(
   on(UsersActions.loadUsersSuccess, (state, { users }) =>
     usersAdapter.setAll(users, { ...state, loaded: true })
   ),
-  on(UsersActions.loadUsersFailure, (state, { error }) => ({ ...state, error }))
+  on(UsersActions.loadUsersFailure, (state, { error }) => ({ ...state, error })),
+  on(UsersActions.loadWorkingDaysSuccess, (state, { workingDays}) => ({
+    ...state,
+    workingDays,
+    error: null
+  })),
+  on(UsersActions.loadWorkingDaysFailure, (state, { error }) => ({
+    ...state,
+    error
+  }))
 );
 
 export function usersReducer(state: UsersState | undefined, action: Action) {

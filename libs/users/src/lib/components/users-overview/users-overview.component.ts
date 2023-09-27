@@ -10,8 +10,12 @@ import { UsersEntity } from '../../+state/users.models';
 })
 export class UsersOverviewComponent {
   users$: Observable<UsersEntity[]>;
+  workingDays$: Observable<Date[] | null | undefined>;
   constructor(private readonly facade: UsersFacade) {
     this.facade.init();
+    this.facade.loadWorkingDays();
+
     this.users$ = this.facade.allUsers$;
+    this.workingDays$ = this.facade.workingDays$;
   }
 }

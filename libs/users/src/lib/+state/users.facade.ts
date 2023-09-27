@@ -16,6 +16,7 @@ export class UsersFacade {
   loaded$ = this.store.pipe(select(UsersSelectors.selectUsersLoaded));
   allUsers$ = this.store.pipe(select(UsersSelectors.selectAllUsers));
   selectedUsers$ = this.store.pipe(select(UsersSelectors.selectEntity));
+  workingDays$ = this.store.pipe(select(UsersSelectors.workingDays));
 
   /**
    * Use the initialization action to perform one
@@ -23,5 +24,9 @@ export class UsersFacade {
    */
   init() {
     this.store.dispatch(UsersActions.initUsers());
+  }
+
+  loadWorkingDays() {
+    this.store.dispatch(UsersActions.loadWorkingDays());
   }
 }

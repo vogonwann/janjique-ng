@@ -5,6 +5,7 @@ import * as UsersActions from './users.actions';
 import * as UsersFeature from './users.reducer';
 import { UsersService } from '../services/users.service';
 import { UsersEntity } from './users.models';
+import { WorkingDaysService } from '../services/working-days.service';
 
 @Injectable()
 export class UsersEffects {
@@ -23,5 +24,20 @@ export class UsersEffects {
     )
   )));
 
-  constructor(private readonly usersService: UsersService) {}
+  loadWorkingDays$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(UsersActions.loadWorkingDays),
+        exhaustMap(() => this.workingDaysService.getWorkingDays()
+          .pipe(
+            map((workingDays: Date[]) => UsersActions.loadWorkingDaysSuccess({ workingDays })),
+        catchError((error) => {
+          return of(UsersActions.loadWorkingDaysFailure({ error }))
+        })
+      )
+  )));
+
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly workingDaysService: WorkingDaysService
+    ) {}
 }

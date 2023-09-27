@@ -9,6 +9,8 @@ import { UsersEffects } from './+state/users.effects';
 import { UsersFacade } from './+state/users.facade';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersOverviewComponent } from './components/users-overview/users-overview.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { ClrDatagridModule, ClrIconModule } from '@clr/angular';
 
 @NgModule({
   imports: [
@@ -17,8 +19,10 @@ import { UsersOverviewComponent } from './components/users-overview/users-overvi
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
     EffectsModule.forFeature([UsersEffects]),
     HttpClientModule,
+    ClrDatagridModule,
+    ClrIconModule
   ],
   providers: [UsersFacade],
-  declarations: [UsersOverviewComponent],
+  declarations: [UsersOverviewComponent, UserListComponent],
 })
 export class UsersModule {}
